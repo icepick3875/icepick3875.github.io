@@ -104,6 +104,8 @@ body {
     width: 100%;
     max-width: 700px; /* PCでカードが大きくなりすぎるのを防ぎます。 */
     margin: 0 auto; /* カードを左右中央へ配置します。 */
+}
+
     /* 最新イベントの画像だけ、全体を切らずに表示します。 */
 .latest-event-card img {
     display: block;
