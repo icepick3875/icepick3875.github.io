@@ -102,7 +102,7 @@ body {
 /* トップページの最新イベントカードです。 */
 .latest-event-card {
     width: 100%;
-    max-width: 700px; /* PCでカードが大きくなりすぎるのを防ぎます。 */
+    max-width: 900px; /* PCでカードが大きくなりすぎるのを防ぎます。 */
     margin: 0 auto; /* カードを左右中央へ配置します。 */
 }
 
@@ -115,7 +115,7 @@ body {
     max-width: 100%;
 
     /* 適度な高さに制限します。 */
-    max-height: 500px;
+    max-height: 900px;
     height: auto;
 
     /* 画像を切らずに全体表示します。 */
