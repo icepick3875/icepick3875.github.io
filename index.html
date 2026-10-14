@@ -1,15 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
+
+<!-- HTML5文書であることをブラウザーへ伝えます。 -->
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <title>アイスピックのホームページ</title>
+    <!-- 日本語の文字化けを防ぐためUTF-8を指定します。 -->
+    <meta charset="utf-8">
+
+    <!-- スマホ幅に合わせてページを表示します。 -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <!-- ブラウザーのタブに表示するページ名です。 -->
+    <title>ホーム | ICE PICK</title>
+
+    <!-- 全ページ共通のCSSを読み込みます。 -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>アイスピックのホームページへようこそ！</h1>
-    <p>かにのち〇ぽはかにち〇ぽ</p>
+
+    <!-- header.jsが、この場所へ共通ヘッダーを挿入します。 -->
+    <div id="common-header"></div>
+
+    <!-- ホームページの主要コンテンツです。 -->
+    <main class="content">
+
+        <!-- 最新イベントの見出しです。 -->
+        <h1 class="latest-event-title">
+
+            最新イベント
+        </h1>
+
+        <!-- 最新イベントを表示する中央寄せカードです。 -->
+        <article class="card latest-event-card">
+
+            <!-- イベント1詳細ページへのリンクです。 -->
+            <a href="event1.html">
+
+                <!-- 最新イベントの画像です。 -->
+               <img src="images/event1.jpg" alt="イベント1">
+
+                <!-- 最新イベントのリンク文字です。 -->
+                <h2>
+                    詳細を見る
+                </h2>
+
+            </a>
+            <!-- イベント詳細へのリンクはここで終了します。 -->
+
+        </article>
+
+        <!-- ニュース欄です。idはヘッダーメニューからの移動先です。 -->
+        <section
+            class="news-section"
+            id="news"
+        >
+
+            <!-- ニュース欄の見出しです。 -->
+            <h2 class="latest-news-title">
+                Topics
+            </h2>
+
+            <!-- ニュースの一覧です。 -->
+            <div class="news-list">
+
+                <!-- 1件目のニュースです。 -->
+                <article class="news-item">
+
+                    <time datetime="2026-10-07">
+                        2026.10.14
+                    </time>
+
+                    <p>
+                        ホームページを公開しました。
+                    </p>
+
+                </article>
+
+                <!-- 2件目のニュースです。 -->
     
-    <!-- ここに画像を追加！ -->
-    <img src="icepick0.png" alt="手書きアイスピック" width="400">
+<article class="news-item">
+    <time datetime="2026-10-01">
+        2026.10.14
+    </time>
+
+    <!-- クリックするとイベント1詳細ページへ移動します。 -->
+    <a
+        href="event1.html"
+        class="news-link"
+    >
+<p>
+        イベント「イラストだらけの部屋からの脱出」の情報を公開しました。
+ <p>
+   </a>
+</article>
+                
+
+                </article>
+
+            </div>
+
+        </section>
+<!-- お問い合わせフォーム全体です。 --> <section class="contact-section"> <!-- お問い合わせフォームの見出しです。 --> <h2 class="contact-title"> お問い合わせ </h2> <!-- 入力フォームです。 --> <form class="contact-form"> <!-- 問い合わせ名の入力欄です。 --> <div class="form-group"> <label for="home-contact-name"> 問い合わせ名 <span class="required-label">必須</span> </label> <input type="text" id="home-contact-name" name="contact-name" placeholder="お名前をご入力ください" required > </div> <!-- ご連絡先の入力欄です。 --> <div class="form-group"> <label for="home-contact-address"> ご連絡先 <span class="required-label">必須</span> </label> <input type="text" id="home-contact-address" name="contact-address" placeholder="メールアドレスまたは電話番号" required > </div> <!-- 問い合わせ内容の入力欄です。 --> <div class="form-group"> <label for="home-contact-message"> 問い合わせ内容 <span class="required-label">必須</span> </label> <textarea id="home-contact-message" name="contact-message" rows="7" placeholder="お問い合わせ内容をご入力ください" required ></textarea> </div> <!-- フォーム送信ボタンです。 --> <button type="submit" class="contact-submit" > 送信する </button>
+
+
+<!-- 送信後のメッセージを表示する場所です。 -->
+<p
+    class="form-message"
+    aria-live="polite"
+></p>
+ </form> </section>
+    </main>
+
+    <!-- 共通ヘッダーとスマホメニューのJavaScriptを読み込みます。 -->
+    <script src="js/header.js"></script>
+<!-- footer.jsが、この場所へ共通フッターを挿入します。 -->
+<div id="common-footer"></div>
+    <!-- 共通フッダーを読み込みます。 -->
+    <script src="js/footer.js"></script>
+
+
+<!-- お問い合わせフォームの動作を読み込みます。 -->
+  <script src="js/contact-form.js"></script>
 
 </body>
+
 </html>
