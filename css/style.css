@@ -530,5 +530,31 @@ body {
         max-width: 100%;
         margin-top: 25px;
     }
+
+/* 最新イベントだけ、共通カード画像の高さ220pxを上書きします。 */
+.card.latest-event-card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    margin: 0 auto;
+    background: #080808;
+}
+
+/* スマホでは利用可能な画面幅以内に収めます。 */
+@media (max-width: 800px) {
+
+    .card.latest-event-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card.latest-event-card img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
 }
 
