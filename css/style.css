@@ -110,9 +110,9 @@ body {
 .latest-event-card img {
  display: block;
     width: auto;
-    max-width: 100%;
+    max-width: none;
     height: auto;
-    max-height: 600px;
+    max-height: none;
     object-fit: contain;
     margin: 0 auto;
     background: #080808;
