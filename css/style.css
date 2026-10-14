@@ -107,9 +107,20 @@ body {
     /* 最新イベントの画像だけ、全体を切らずに表示します。 */
 .latest-event-card img {
     display: block;
-    width: 100%;
+
+    /* 元画像以上に大きくしません。 */
+    width: auto;
+    max-width: 100%;
+
+    /* 適度な高さに制限します。 */
+    max-height: 500px;
     height: auto;
+
+    /* 画像を切らずに全体表示します。 */
     object-fit: contain;
+
+    /* 画像を中央に配置します。 */
+    margin: 0 auto;
 }
 /* 「ニュース」を中央揃えにします。 */
 .latest-news-title {
