@@ -1,203 +1,108 @@
-/* ========================================
-   1. Base
-======================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Yu Gothic", sans-serif; background: #111; color: #fff; line-height: 1.7; }
+img { max-width: 100%; }
+.site-header { position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 12px 24px; background: #000; box-shadow: 0 3px 10px rgba(0,0,0,.5); }
+.header-left { display: flex; align-items: center; gap: 12px; }
+.logo-link { display: block; line-height: 0; }
+.logo { display: block; width: auto; height: 60px; }
+.nav { display: flex; gap: 10px; }
+.nav a { padding: 10px 16px; color: #fff; background: #333; text-decoration: none; border-radius: 8px; }
+.nav a:hover { color: #000; background: orange; }
+.menu-btn { display: none; padding: 6px; color: #fff; background: none; border: 0; font-size: 30px; cursor: pointer; }
+.content { width: 100%; max-width: 1100px; margin: 0 auto; padding: 32px; }
+.page-title, .latest-event-title, .event-detail-title, .contact-title, .social-title { text-align: center; }
+.latest-event-title { margin-bottom: 24px; }
+.card { overflow: hidden; background: #222; border: 2px solid transparent; border-radius: 14px; }
+.card a { display: block; color: #fff; text-decoration: none; }
+.card img { display: block; width: 100%; height: 220px; object-fit: contain; background: #080808; }
+.card h2, .card h3 { padding: 16px; text-align: center; }
+.card.latest-event-card { width: 100%; max-width: 900px; margin: 0 auto; }
+.card.latest-event-card img { width: 100%; height: auto; }
+.event-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 20px; margin-top: 24px; }
+.news-section { width: 100%; max-width: 700px; margin: 60px auto 0; }
+.latest-news-title { margin-bottom: 24px; text-align: center; }
+.news-list { overflow: hidden; background: #222; border-radius: 14px; }
+.news-item { display: flex; align-items: center; gap: 24px; padding: 18px 20px; border-bottom: 1px solid #444; }
+.news-item:last-child { border-bottom: 0; }
+.news-item time { flex-shrink: 0; color: orange; font-weight: 700; }
+.news-link { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.description { max-width: 700px; margin: 20px auto; }
+.event-detail-image { display: block; width: 100%; max-width: 500px; height: auto; margin: 20px auto; border-radius: 12px; }
+.event-information { width: 100%; max-width: 900px; margin: 50px auto 0; }
+.event-information-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+.event-information-card { padding: 24px 16px; text-align: center; background: #222; border: 1px solid #444; border-radius: 14px; }
+.event-information-label { margin-bottom: 10px; color: #aaa; font-size: 16px; }
+.event-information-value { color: orange; font-size: 24px; font-weight: 700; }
+.ticket-purchase-button { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 360px; min-height: 58px; margin: 35px auto 0; padding: 14px 24px; color: #000; background: orange; border-radius: 10px; text-decoration: none; font-size: 18px; font-weight: 700; }
+.contact-section, .social-section { width: 100%; max-width: 700px; margin: 60px auto 0; }
+.contact-title, .social-title { margin-bottom: 24px; }
+.contact-form { width: 100%; padding: 30px; background: #222; border: 1px solid #444; border-radius: 14px; }
+.form-group { margin-bottom: 24px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 700; }
+.required-label { display: inline-block; margin-left: 6px; padding: 2px 7px; color: #000; background: orange; border-radius: 4px; font-size: 12px; }
+.form-group input, .form-group textarea { display: block; width: 100%; padding: 13px 15px; color: #fff; background: #111; border: 1px solid #555; border-radius: 8px; font: inherit; }
+.contact-submit { display: block; width: 100%; padding: 14px 20px; color: #000; background: orange; border: 0; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; }
+.form-message { display: none; margin-top: 20px; padding: 14px; text-align: center; border-radius: 8px; }
+.form-message.is-success { display: block; color: #d8ffd8; background: #173d22; border: 1px solid #4caf50; }
+.social-buttons { display: flex; justify-content: center; gap: 16px; }
+.social-button { display: flex; align-items: center; justify-content: center; width: 220px; min-height: 52px; padding: 12px 20px; color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; }
+.x-button { background: #222; border: 1px solid #666; }
+.line-button { background: #06c755; border: 1px solid #06c755; }
+.site-footer { width: 100%; margin-top: 60px; padding: 28px 20px; color: #aaa; background: #000; border-top: 1px solid #333; text-align: center; }
 
-html {
-    scroll-behavior: smooth;
-}
+/* Welcome */
+.welcome-screen { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; overflow: hidden; background: #000; opacity: 1; visibility: visible; transition: opacity .7s ease, visibility .7s ease; }
+.welcome-screen.is-finished { opacity: 0; visibility: hidden; pointer-events: none; }
+.welcome-animation { position: relative; width: min(90vw,720px); height: min(80vh,620px); }
+.welcome-cube { position: absolute; top: 50%; left: 50%; width: 210px; height: 210px; opacity: 0; transform: translate(-50%,-42%) scale(.65); animation: cube-appear 1s ease .2s forwards; }
+.cube-face { position: absolute; background: #eef3fb; border: 5px solid #fff; box-shadow: inset 0 0 28px rgba(120,135,160,.45); }
+.cube-front { top: 45px; left: 20px; width: 170px; height: 165px; clip-path: polygon(0 0,52% 18%,100% 0,100% 78%,52% 100%,0 78%); }
+.cube-top { top: 0; left: 20px; width: 170px; height: 80px; clip-path: polygon(0 56%,52% 0,100% 56%,52% 100%); }
+.cube-right { top: 45px; right: 0; width: 85px; height: 165px; background: #cfd5df; opacity: .7; clip-path: polygon(0 18%,100% 0,100% 78%,0 100%); }
+.cube-crack { position: absolute; top: 82px; left: 95px; width: 12px; height: 12px; opacity: 0; background: #111; clip-path: polygon(50% 0,64% 37%,100% 24%,74% 53%,100% 86%,59% 69%,43% 100%,38% 65%,0 82%,29% 51%,4% 23%,40% 37%); animation: crack-appear .28s ease 2.05s forwards; }
+.welcome-pick { position: absolute; top: 7%; left: 65%; width: 270px; height: 105px; opacity: 0; transform: translate(140px,-120px) rotate(-48deg); transform-origin: 12% 50%; animation: pick-strike 1.15s cubic-bezier(.7,0,.25,1) 1.05s forwards; }
+.pick-handle { position: absolute; top: 18px; right: 0; width: 112px; height: 68px; background: #fff; clip-path: polygon(8% 20%,80% 0,100% 28%,90% 75%,25% 100%,0 72%); }
+.pick-shaft { position: absolute; top: 47px; left: 42px; width: 135px; height: 9px; background: #fff; }
+.pick-tip { position: absolute; top: 41px; left: 5px; width: 48px; height: 20px; background: #fff; clip-path: polygon(100% 28%,100% 72%,0 50%); }
+.ice-particles { position: absolute; top: 47%; left: 49%; }
+.particle { position: absolute; width: 20px; height: 20px; opacity: 0; background: #fff; clip-path: polygon(50% 0,100% 100%,0 72%); }
+.particle-1 { animation: p1 .65s ease-out 2.05s forwards; }
+.particle-2 { animation: p2 .65s ease-out 2.05s forwards; }
+.particle-3 { animation: p3 .65s ease-out 2.05s forwards; }
+.particle-4 { animation: p4 .65s ease-out 2.05s forwards; }
+.welcome-final-logo { position: absolute; top: 50%; left: 50%; z-index: 10; display: block; width: min(76vw,560px); max-height: 72vh; object-fit: contain; opacity: 0; visibility: hidden; transform: translate(-50%,-50%) scale(.82); transition: opacity .45s ease, transform .45s ease; }
+.welcome-screen.show-logo .welcome-cube, .welcome-screen.show-logo .welcome-pick, .welcome-screen.show-logo .ice-particles { opacity: 0; visibility: hidden; }
+.welcome-screen.show-logo .welcome-final-logo { opacity: 1; visibility: visible; transform: translate(-50%,-50%) scale(1); }
+.welcome-skip { position: absolute; right: 24px; bottom: 24px; z-index: 20; padding: 10px 22px; color: #fff; background: rgba(255,255,255,.05); border: 1px solid #777; border-radius: 5px; cursor: pointer; }
+@keyframes cube-appear { to { opacity: 1; transform: translate(-50%,-42%) scale(1); } }
+@keyframes pick-strike { 0% { opacity: 0; transform: translate(140px,-120px) rotate(-48deg); } 25% { opacity: 1; } 100% { opacity: 1; transform: translate(-98px,104px) rotate(-48deg); } }
+@keyframes crack-appear { to { opacity: 1; transform: scale(5.5); } }
+@keyframes p1 { 20% { opacity: 1; } to { opacity: 0; transform: translate(-125px,-95px) rotate(150deg); } }
+@keyframes p2 { 20% { opacity: 1; } to { opacity: 0; transform: translate(125px,-85px) rotate(-180deg); } }
+@keyframes p3 { 20% { opacity: 1; } to { opacity: 0; transform: translate(-145px,45px) rotate(220deg); } }
+@keyframes p4 { 20% { opacity: 1; } to { opacity: 0; transform: translate(145px,55px) rotate(-230deg); } }
 
-body {
-    font-family: "Yu Gothic", sans-serif;
-    background: #111;
-    color: #fff;
-    line-height: 1.7;
-}
-
-/* ========================================
-   2. Header and navigation
-======================================== */
-.site-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 12px 24px;
-    background: #000;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo-link {
-    display: block;
-    line-height: 0;
-}
-
-.logo-link:hover {
-    opacity: 0.8;
-}
-
-.logo {
-    display: block;
-    width: auto;
-    height: 60px;
-}
-
-.nav {
-    display: flex;
-    gap: 10px;
-}
-
-.nav a {
-    padding: 10px 16px;
-    color: #fff;
-    background: #333;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-.nav a:hover {
-    color: #000;
-    background: orange;
-}
-
-.menu-btn {
-    display: none;
-    padding: 6px;
-    color: #fff;
-    background: none;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-/* ========================================
-   3. Common page layout
-======================================== */
-.content {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 32px;
-}
-
-.description {
-    max-width: 700px;
-    margin: 20px auto;
-}
-
-/* ========================================
-   4. Home: latest event
-======================================== */
-.latest-event-title {
-    margin-bottom: 24px;
-    text-align: center;
-}
-
-.card.latest-event-card {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.card.latest-event-card > a {
-    display: block;
-    width: 100%;
-}
-
-.card.latest-event-card > a > img {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin: 0;
-    background: #080808;
+@media (max-width: 800px) {
+    .site-header { padding: 10px 14px; }
+    .logo { height: 50px; }
+    .menu-btn { display: block; }
+    .nav { display: none; position: absolute; top: 76px; right: 10px; flex-direction: column; width: 220px; padding: 12px; background: #000; border-radius: 10px; }
+    .nav.active { display: flex; }
+    .content { padding: 24px 16px; }
+    .news-item { align-items: flex-start; flex-direction: column; gap: 4px; }
+    .event-detail-title { font-size: clamp(16px,5vw,24px); white-space: nowrap; }
+    .event-information-grid { grid-template-columns: 1fr; gap: 12px; }
+    .social-buttons { flex-direction: column; align-items: center; }
+    .social-button { width: 100%; max-width: 320px; }
+    .welcome-final-logo { width: 86vw; }
 }
 
 /* ========================================
-   5. Home: topics/news
+   リンク・ボタンのマウスオーバー演出
 ======================================== */
-.news-section {
-    width: 100%;
-    max-width: 700px;
-    margin: 60px auto 0;
-}
 
-.latest-news-title,
-.news-title {
-    margin-bottom: 24px;
-    text-align: center;
-}
-
-.news-list {
-    overflow: hidden;
-    background: #222;
-    border-radius: 14px;
-}
-
-.news-item {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 18px 20px;
-    border-bottom: 1px solid #444;
-}
-
-.news-item:last-child {
-    border-bottom: none;
-}
-
-.news-item time {
-    flex-shrink: 0;
-    color: orange;
-    font-weight: bold;
-}
-
-.news-item p {
-    margin: 0;
-}
-
-.news-link {
-    color: #fff;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.news-link:hover {
-    color: orange;
-}
-
-/* ========================================
-   6. General event cards
-======================================== */
-.event-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 24px;
-}
-
-.card {
-    overflow: hidden;
-    background: #222;
-    border: 2px solid transparent;
-    border-radius: 14px;
+/* リンク付きカードの基本状態です。 */
+.card:has(a) {
     transition:
         background-color 0.3s ease,
         border-color 0.3s ease,
@@ -205,122 +110,80 @@ body {
         box-shadow 0.3s ease;
 }
 
-.card a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.card img {
-    display: block;
-    width: 100%;
-    height: 220px;
-    object-fit: contain;
-    background: #080808;
-}
-
-.card h2,
-.card h3 {
-    padding: 16px;
-    text-align: center;
-}
-
-.card a img {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
+/* リンク付きカードへマウスを乗せた状態です。 */
 .card:has(a):hover {
-    background: #2f2f2f;
+    background-color: #2f2f2f;
     border-color: orange;
+
+    /* カードを少し上へ移動します。 */
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(255, 165, 0, 0.25);
+
+    /* オレンジ色の影を付けます。 */
+    box-shadow:
+        0 10px 25px
+        rgba(255, 165, 0, 0.25);
 }
 
+/* カード内の画像の基本状態です。 */
+.card a img {
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* カードへマウスを乗せたとき、画像を少し拡大します。 */
 .card:has(a):hover img {
-    opacity: 0.85;
+    opacity: 0.88;
     transform: scale(1.03);
 }
 
+/* カード内タイトルの基本状態です。 */
+.card h2,
+.card h3 {
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* カードへマウスを乗せたとき、タイトルを変化させます。 */
 .card:has(a):hover h2,
 .card:has(a):hover h3 {
     color: orange;
+    transform: translateY(-2px);
 }
 
 /* ========================================
-   7. Event detail page
+   ヘッダーナビゲーション
 ======================================== */
-.event-detail-title {
-    text-align: center;
-}
 
-.event-detail-image {
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    margin: 20px auto;
-    border-radius: 12px;
-}
-
-.event-information {
-    width: 100%;
-    max-width: 800px;
-    margin: 50px auto 0;
-}
-
-.event-information-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-}
-
-.event-information-card {
-    padding: 24px 16px;
-    text-align: center;
-    background: #222;
-    border: 1px solid #444;
-    border-radius: 14px;
+/* ナビゲーションボタンの動きを設定します。 */
+.nav a {
     transition:
-        border-color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+        color 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.event-information-card:hover {
-    border-color: orange;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.2);
-}
-
-.event-information-label {
-    margin-bottom: 10px;
-    color: #aaa;
-    font-size: 16px;
-}
-
-.event-information-value {
-    color: orange;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.ticket-purchase-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 360px;
-    min-height: 58px;
-    margin: 35px auto 0;
-    padding: 14px 24px;
+/* ナビゲーションへマウスを乗せた状態です。 */
+.nav a:hover {
     color: #000;
-    background: orange;
+    background-color: orange;
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 14px
+        rgba(255, 165, 0, 0.25);
+}
+
+/* ========================================
+   チケット購入ボタン
+======================================== */
+
+/* チケット購入ボタンの基本状態です。 */
+.ticket-purchase-button {
     border: 2px solid orange;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
+
     transition:
         color 0.3s ease,
         background-color 0.3s ease,
@@ -328,303 +191,284 @@ body {
         box-shadow 0.3s ease;
 }
 
+/* チケット購入ボタンへマウスを乗せた状態です。 */
 .ticket-purchase-button:hover {
     color: orange;
-    background: transparent;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 22px rgba(255, 165, 0, 0.25);
+    background-color: transparent;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 9px 22px
+        rgba(255, 165, 0, 0.3);
 }
 
-.ticket-purchase-button:focus-visible {
-    outline: 3px solid #fff;
+/* ========================================
+   お問い合わせ送信ボタン
+======================================== */
+
+/* 送信ボタンの基本状態です。 */
+.contact-submit {
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* 送信ボタンへマウスを乗せた状態です。 */
+.contact-submit:hover {
+    background-color: #ffc04d;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(255, 165, 0, 0.25);
+}
+
+/* ボタンを押している間の状態です。 */
+.contact-submit:active,
+.ticket-purchase-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ========================================
+   SNSボタン
+======================================== */
+
+/* SNSボタンの基本状態です。 */
+.social-button {
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* SNSボタンへマウスを乗せた状態です。 */
+.social-button:hover {
+    opacity: 0.85;
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+   Topicsリンク
+======================================== */
+
+/* Topics内リンクの基本状態です。 */
+.news-link {
+    transition:
+        color 0.25s ease,
+        text-decoration-color 0.25s ease;
+}
+
+/* Topics内リンクへマウスを乗せた状態です。 */
+.news-link:hover {
+    color: orange;
+    text-decoration-color: orange;
+}
+
+/* ========================================
+   ロゴ
+======================================== */
+
+/* ヘッダーロゴの基本状態です。 */
+.logo-link {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* ロゴへマウスを乗せた状態です。 */
+.logo-link:hover {
+    opacity: 0.8;
+    transform: scale(1.04);
+}
+
+/* ========================================
+   ウェルカム画面のSKIPボタン
+======================================== */
+
+/* SKIPボタンの基本状態です。 */
+.welcome-skip {
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* SKIPボタンへマウスを乗せた状態です。 */
+.welcome-skip:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+    transform: translateY(-3px);
+}
+
+/* ========================================
+   キーボード操作時の表示
+======================================== */
+
+/* キーボードでリンクやボタンを選択した状態です。 */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid orange;
     outline-offset: 4px;
 }
-
 /* ========================================
-   8. Contact form
+   最新イベント専用スライドイン演出
 ======================================== */
-.contact-page-title,
-.contact-title {
-    text-align: center;
+.latest-title-slide.latest-intro-pending {
+    opacity: 0;
+    transform: translateX(-65px);
 }
 
-.contact-title {
-    margin-bottom: 24px;
+.latest-card-slide.latest-intro-pending {
+    opacity: 0;
+    transform: translateY(55px);
 }
 
-.contact-section {
+.latest-title-slide,
+.latest-card-slide {
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.latest-title-slide.latest-intro-pending.is-visible,
+.latest-card-slide.latest-intro-pending.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.latest-card-slide {
     width: 100%;
-    max-width: 700px;
-    margin: 60px auto 0;
 }
 
-.contact-form {
-    width: 100%;
-    padding: 30px;
-    background: #222;
-    border: 1px solid #444;
-    border-radius: 14px;
-}
-
-.form-group {
-    margin-bottom: 24px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #fff;
-    font-weight: bold;
-}
-
-.required-label {
-    display: inline-block;
-    margin-left: 6px;
-    padding: 2px 7px;
-    color: #000;
-    background: orange;
-    border-radius: 4px;
-    font-size: 12px;
-}
-
-.form-group input,
-.form-group textarea {
-    display: block;
-    width: 100%;
-    padding: 13px 15px;
-    color: #fff;
-    background: #111;
-    border: 1px solid #555;
-    border-radius: 8px;
-    font: inherit;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: orange;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.2);
-}
-
-.form-group textarea {
-    min-height: 180px;
-    resize: vertical;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #888;
-}
-
-.contact-submit {
-    display: block;
-    width: 100%;
-    padding: 14px 20px;
-    color: #000;
-    background: orange;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.contact-submit:hover {
-    background: #ffc04d;
-    transform: translateY(-2px);
-}
-
-.form-message {
-    display: none;
-    margin-top: 20px;
-    padding: 14px;
-    text-align: center;
-    border-radius: 8px;
-}
-
-.form-message.is-success {
-    display: block;
-    color: #d8ffd8;
-    background: #173d22;
-    border: 1px solid #4caf50;
+@media (prefers-reduced-motion: reduce) {
+    .latest-title-slide.latest-intro-pending,
+    .latest-card-slide.latest-intro-pending {
+        transform: none;
+        transition: none;
+    }
 }
 
 /* ========================================
-   9. Social links
+   スクロール時のスライドイン演出
 ======================================== */
-.social-section {
-    width: 100%;
-    max-width: 700px;
-    margin: 40px auto;
+
+/*
+   JavaScriptが正常に動いた場合だけ、
+   対象要素を演出前の状態にします。
+*/
+.scroll-animation-ready .scroll-reveal {
+    opacity: 0;
+
+    transition:
+        opacity 0.75s ease,
+        transform 0.75s
+        cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.social-title {
-    margin-bottom: 20px;
-    text-align: center;
+/* 下から上へ表示する要素です。 */
+.scroll-animation-ready .scroll-reveal-up {
+    transform: translateY(55px);
 }
 
-.social-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
+/* 左から右へ表示する要素です。 */
+.scroll-animation-ready .scroll-reveal-left {
+    transform: translateX(-65px);
 }
 
-.social-button {
+/* 右から左へ表示する要素です。 */
+.scroll-animation-ready .scroll-reveal-right {
+    transform: translateX(65px);
+}
+
+/* 画面内へ入った後の状態です。 */
+.scroll-animation-ready .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* 複数要素を少しずつ遅らせる設定です。 */
+.scroll-delay-1 {
+    transition-delay: 0.1s !important;
+}
+
+.scroll-delay-2 {
+    transition-delay: 0.2s !important;
+}
+
+.scroll-delay-3 {
+    transition-delay: 0.3s !important;
+}
+
+.scroll-delay-4 {
+    transition-delay: 0.4s !important;
+}
+
+/*
+   動きを減らす設定を利用している場合は、
+   移動アニメーションを無効にします。
+*/
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animation-ready .scroll-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* ========================================
+   ウェルカム動画 最終設定
+======================================== */
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 220px;
-    min-height: 52px;
-    padding: 12px 20px;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.x-button {
-    background: #222;
-    border: 1px solid #666;
-}
-
-.line-button {
-    background: #06c755;
-    border: 1px solid #06c755;
-}
-
-.social-button:hover {
-    opacity: 0.8;
-    transform: translateY(-3px);
-}
-
-.social-button:focus-visible {
-    outline: 3px solid orange;
-    outline-offset: 3px;
-}
-
-/* ========================================
-   10. Footer
-======================================== */
-.site-footer {
-    width: 100%;
-    margin-top: 60px;
-    padding: 28px 20px;
-    color: #aaa;
+    padding: 24px;
     background: #000;
-    border-top: 1px solid #333;
-    text-align: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-.copyright {
-    font-size: 13px;
-    letter-spacing: 0.5px;
+.welcome-screen.is-closing {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-/* ========================================
-   11. Mobile
-======================================== */
+.welcome-video {
+    display: block;
+    width: min(85vw, 1200px);
+    max-height: 85vh;
+    height: auto;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.welcome-skip {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    z-index: 2;
+}
+
 @media (max-width: 800px) {
-    .site-header {
-        padding: 10px 14px;
-    }
-
-    .logo {
-        height: 50px;
-    }
-
-    .site-name {
-        font-size: 14px;
-    }
-
-    .menu-btn {
-        display: block;
-    }
-
-    .nav {
-        display: none;
-        position: absolute;
-        top: 76px;
-        right: 10px;
-        flex-direction: column;
-        width: 220px;
-        padding: 12px;
-        background: #000;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    }
-
-    .nav.active {
-        display: flex;
-    }
-
-    .content {
-        padding: 24px 16px;
-    }
-
-    .card.latest-event-card {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .card.latest-event-card > a > img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .news-section {
-        margin-top: 40px;
-    }
-
-    .news-item {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
-        padding: 16px;
-    }
-
-    .event-detail-title {
-        font-size: clamp(16px, 5vw, 24px);
-        line-height: 1.3;
-        white-space: nowrap;
-    }
-
-    .event-information {
-        margin-top: 35px;
-    }
-
-    .event-information-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .event-information-card {
-        padding: 20px 14px;
-    }
-
-    .ticket-purchase-button {
-        max-width: 100%;
-        margin-top: 25px;
-    }
-
-    .contact-section {
-        margin-top: 40px;
-    }
-
-    .contact-form {
-        padding: 20px 16px;
-    }
-
-    .social-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .social-button {
-        width: 100%;
-        max-width: 320px;
-    }
+    .welcome-screen { padding: 14px; }
+    .welcome-video { width: 92vw; max-height: 80vh; border-radius: 10px; }
+    .welcome-skip { right: 14px; bottom: 14px; }
 }
